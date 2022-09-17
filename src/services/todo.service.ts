@@ -75,9 +75,9 @@ const TodosRequestDefaultData = {
   sortBy: TodoSortVariants.Status,
   sortOrder: TodoSortOrders.Asc,
 };
-const todosCount = prisma.todos.count();
 
 export const getTodosFromDb = async (todoRequestData?: ITodoRequest): Promise<ITodos | null> => {
+  const todosCount = prisma.todos.count();
   const { page, sortBy, sortOrder } = isEmpty(todoRequestData)
     ? TodosRequestDefaultData
     : { ...TodosRequestDefaultData, ...todoRequestData };
