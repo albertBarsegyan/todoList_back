@@ -16,7 +16,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     });
   }
 
-  jwt.verify(token, process.env.JWT_TOKEN_SECRET ?? "secret", (err, userId) => {
+  jwt.verify(token, process.env.JWT_TOKEN_SECRET ?? "secret", function (err, userId) {
     if (err !== null) {
       return res.json({
         data: null,

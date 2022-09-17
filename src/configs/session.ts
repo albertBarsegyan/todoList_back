@@ -2,7 +2,7 @@ import * as session from "express-session";
 import expressMySqlSession from "express-mysql-session";
 
 const mysqlSessionStoreSettings = {
-  host: process.env.DATABASE_HOST as string,
+  host: process.env.DATABASE_HOST,
   port: Number(process.env.DATABASE_PORT),
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
