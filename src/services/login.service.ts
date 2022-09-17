@@ -3,7 +3,7 @@ import { IUserLogin } from "../interfaces/user.interfaces";
 import { prisma } from "../configs/prismaClient";
 import { ResponseMessages } from "../constants/messages.constants";
 import { IResponse, ResponseStatuses } from "../interfaces/response.interfaces";
-import excludeKeysFromObject from "../helpers/removeKeysFromObject.helpers";
+import excludeKeysFromObject from "../helpers/object.helpers";
 
 export const userLogin = async ({ username, password }: IUserLogin): Promise<IResponse> => {
   const userWithCurrentEmail = await prisma.users.findFirst({
