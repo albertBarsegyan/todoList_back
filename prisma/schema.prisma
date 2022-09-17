@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DB_URL")
+}
+
+model users {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  first_name String   @db.VarChar(45)
+  username   String   @db.VarChar(45)
+  last_name  String   @db.VarChar(45)
+  email      String   @db.VarChar(45)
+  password   String   @db.VarChar(255)
+  is_admin   Int      @default(0) @db.TinyInt()
+}
+
+model sessions {
+  session_id String  @id @db.VarChar(128)
+  expires    Int     @db.UnsignedInt
+  data       String? @db.MediumText
+}
+
+model task_statuses {
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(20)
+  todos todos[]
+}
+
+model todos {
+  id        Int           @id @default(autoincrement())
+  created_at DateTime      @default(now())
+  username  String        @db.VarChar(100)
+  email     String        @db.VarChar(100)
+  text      String        @db.VarChar(600)
+  is_edited Int           @default(0) @db.TinyInt()
+  status_id Int
+  status    task_statuses @relation(fields: [status_id], references: [id])
+}
