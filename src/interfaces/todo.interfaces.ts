@@ -31,9 +31,12 @@ export interface ITodo {
   statusId: number;
 }
 
-export interface ITodos {
-  list: ITodo[];
+export interface IAddTodoResponse {
+  data: ITodo[];
   allPages: number;
+}
+
+export interface ITodos extends IAddTodoResponse {
   page: number;
   sortOrder: TodoSortOrders;
   sortBy: TodoSortVariants;
